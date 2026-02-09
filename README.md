@@ -32,8 +32,8 @@ Modern and minimalist personal portfolio frontend built with Flutter Web, featur
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone [https://github.com/your-username/your-repo-name.git](https://github.com/gmorais671/portfolio-web.git)
+   cd portfolio-web
 
 2. **Install dependencies:**
    ```bash
