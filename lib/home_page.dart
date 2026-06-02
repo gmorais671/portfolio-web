@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio_web/sections/contacr_section.dart';
+import 'package:portfolio_web/sections/about_section.dart';
+import 'package:portfolio_web/sections/contact_section.dart';
 import 'package:portfolio_web/widgets/footer.dart';
 import 'core/app_theme.dart';
 import 'sections/hero_section.dart';
@@ -16,12 +17,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
 
-  void _scrollTo(double offset) {
-    _scrollController.animateTo(
-      offset,
-      duration: const Duration(milliseconds: 800),
-      curve: Curves.easeInOut,
-    );
+  final homeKey = GlobalKey();       // Hero Section
+  final projectsKey = GlobalKey();   // Projects Section
+  final aboutKey = GlobalKey();      // About Me Section
+  final contactKey = GlobalKey();    // Contact Section
+
+  void _scrollTo(GlobalKey key) {
+    final context = key.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   @override
@@ -31,7 +40,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black.withOpacity(0.8),
         elevation: 0,
         title: Text(
-          'G.',
+          'Gabriel M.',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
             color: AppColors.primary,
@@ -39,18 +48,19 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           TextButton(
-            onPressed: () => _scrollTo(0),
+            onPressed: () => _scrollTo(homeKey),
             child: const Text('Home', style: TextStyle(color: Colors.white)),
           ),
           TextButton(
-            onPressed: () => _scrollTo(800),
-            child: const Text(
-              'Projetos',
-              style: TextStyle(color: Colors.white),
-            ),
+            onPressed: () => _scrollTo(projectsKey),
+            child: const Text('Projetos', style: TextStyle(color: Colors.white)),
           ),
           TextButton(
-            onPressed: () => _scrollTo(1600),
+            onPressed: () => _scrollTo(aboutKey),
+            child: const Text('Sobre Mim', style: TextStyle(color: Colors.white)),
+          ),
+          TextButton(
+            onPressed: () => _scrollTo(contactKey),
             child: const Text('Contato', style: TextStyle(color: Colors.white)),
           ),
           const SizedBox(width: 20),
@@ -60,14 +70,26 @@ class _HomePageState extends State<HomePage> {
         controller: _scrollController,
         child: Column(
           children: [
-            HeroSection(onContactClick: () => _scrollTo(1600)),
-            const ProjectsSection(),
-            const ContactSection(), // Substitua o Container antigo por este
+            HeroSection(key: homeKey, onContactClick: () => _scrollTo(contactKey)),
+            ProjectsSection(key: projectsKey),
+            AboutMeSection(key: aboutKey),
+            ContactSection(key: contactKey),
             Footer(
               onNavTap: (index) {
-                if (index == 0) _scrollTo(0);
-                if (index == 1) _scrollTo(800);
-                if (index == 2) _scrollTo(1600);
+                switch (index) {
+                  case 0:
+                    _scrollTo(homeKey);
+                    break;
+                  case 1:
+                    _scrollTo(projectsKey);
+                    break;
+                  case 2:
+                    _scrollTo(aboutKey);
+                    break;
+                  case 3:
+                    _scrollTo(contactKey);
+                    break;
+                }
               },
             ),
           ],

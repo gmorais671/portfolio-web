@@ -34,7 +34,7 @@ class Footer extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            "Feito com Flutter & Python",
+            "Feito com Flutter e AI Coder Agents",
             style: const TextStyle(color: Colors.white24, fontSize: 12),
           ),
           const SizedBox(height: 16),

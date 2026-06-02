@@ -17,7 +17,7 @@ class HeroSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "OLÁ, EU SOU O GABRIEL",
+            "OLÁ, SOU GABRIEL MARCONDES",
             style: GoogleFonts.poppins(
               fontSize: 18,
               letterSpacing: 4,
@@ -26,7 +26,7 @@ class HeroSection extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            "Desenvolvedor Fullstack\n& Entusiasta de Tecnologia.",
+            "Desenvolvedor Flutter & Full-Stack\nConstruo aplicações móveis confiáveis, offline-first e com features em tempo real.",
             style: GoogleFonts.poppins(
               fontSize: 64,
               fontWeight: FontWeight.bold,
